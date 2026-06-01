@@ -90,6 +90,9 @@ const Home = () => {
             <img 
               src={withBase('/import/tianmu.png')} 
               alt="Heritage View" 
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
               className="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-[1500ms]"
             />
             

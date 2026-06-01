@@ -92,6 +92,9 @@ const CollectionDetail = () => {
             <img
               src={mainImage}
               alt={displayTitle}
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
               className="w-full h-auto max-h-[72vh] object-contain mx-auto"
             />
           </button>

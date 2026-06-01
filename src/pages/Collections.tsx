@@ -53,6 +53,9 @@ const Collections = () => {
               <img 
                 src={withBase(url ?? '/import/picture0.jpg')} 
                 alt={displayTitle || art.title} 
+                loading="lazy"
+                decoding="async"
+                fetchPriority="low"
                 className="w-full h-full object-cover scale-100 group-hover:scale-110 transition-transform duration-1000" 
               />
               <div className="absolute inset-0 bg-brand-primary/0 group-hover:bg-brand-primary/90 transition-all duration-500 flex flex-col justify-end p-8 opacity-0 group-hover:opacity-100 backdrop-blur-sm">

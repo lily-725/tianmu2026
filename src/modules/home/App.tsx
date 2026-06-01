@@ -26,6 +26,10 @@ function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+const NO_IMAGE_PLACEHOLDER = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(
+  '<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600"><rect width="800" height="600" fill="%23101010"/><text x="50%25" y="50%25" fill="%23ffffff" font-size="32" font-family="system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" text-anchor="middle" dominant-baseline="middle" opacity="0.55">NO IMAGE</text></svg>',
+)}`;
+
 // --- Components ---
 
 /**
@@ -179,8 +183,11 @@ const DetailModal = ({
         <div className="w-full md:w-[60%] h-1/2 md:h-full bg-black relative">
           <img 
             key={marker.images[currentImg]}
-            src={marker.images[currentImg] || 'https://via.placeholder.com/800x600?text=No+Image'}
+            src={marker.images[currentImg] || NO_IMAGE_PLACEHOLDER}
             alt={marker.title}
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
           />

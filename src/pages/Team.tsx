@@ -36,19 +36,19 @@ const Team = () => {
           style={{ y: useTransform(scrollYProgress, [0, 1], [50, -150]) }}
           className="absolute top-[10%] -left-40 w-80 h-60 opacity-[0.05] grayscale rotate-12"
         >
-          <img src={withBase('/shuru/zupu.jpg')} className="w-full h-full object-cover rounded-lg" alt="" />
+          <img src={withBase('/shuru/zupu.jpg')} loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover rounded-lg" alt="" />
         </motion.div>
         <motion.div 
           style={{ y: useTransform(scrollYProgress, [0, 1], [-50, 200]) }}
           className="absolute top-[40%] -right-48 w-96 h-72 opacity-[0.04] grayscale -rotate-6"
         >
-          <img src={withBase('/shuru/qingshi.jpg')} className="w-full h-full object-cover rounded-lg" alt="" />
+          <img src={withBase('/shuru/qingshi.jpg')} loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover rounded-lg" alt="" />
         </motion.div>
         <motion.div 
           style={{ y: useTransform(scrollYProgress, [0, 1], [100, -100]) }}
           className="absolute bottom-[10%] -left-32 w-64 h-80 opacity-[0.05] grayscale -rotate-12"
         >
-          <img src={withBase('/shuru/mu1937.jpg')} className="w-full h-full object-cover rounded-lg" alt="" />
+          <img src={withBase('/shuru/mu1937.jpg')} loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover rounded-lg" alt="" />
         </motion.div>
       </div>
 

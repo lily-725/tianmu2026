@@ -161,8 +161,10 @@ const ArticleDetail = () => {
                           <img
                             src={img.src}
                             alt={img.title}
-                            className="w-full h-auto max-h-[240px] md:max-h-[320px] object-contain mx-auto"
                             loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
+                            className="w-full h-auto max-h-[240px] md:max-h-[320px] object-contain mx-auto"
                           />
                         </Link>
                       </figure>

@@ -99,25 +99,32 @@ export const SidebarDefault = ({ activePeriod, onImageZoom }: SidebarDefaultProp
           <div className="relative group" key={activePeriod.id}>
             <div className="relative">
               {galleryImages.map((img, i) => (
+                (() => {
+                  const isActive = i === activeGalleryIndex;
+
+                  return (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0 }}
-                  animate={{ opacity: i === activeGalleryIndex ? 1 : 0 }}
+                  animate={{ opacity: isActive ? 1 : 0 }}
                   transition={{ duration: 0.3 }}
-                  className={`relative w-full cursor-zoom-in overflow-hidden rounded-sm aspect-[16/10] ${i === activeGalleryIndex ? 'block' : 'hidden'}`}
+                  className={`relative w-full cursor-zoom-in overflow-hidden rounded-sm aspect-[16/10] ${isActive ? 'block' : 'hidden'}`}
                   onClick={() => onImageZoom(img)}
                 >
                   <img
-                    src={img.thumbnailUrl || img.url}
+                    src={img.url}
                     alt={img.name}
-                    loading="lazy"
+                    loading={isActive ? 'eager' : 'lazy'}
                     decoding="async"
+                    fetchPriority={isActive ? 'high' : 'low'}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
                     <div className="text-white text-[10px] font-bold tracking-widest uppercase">{img.name}</div>
                   </div>
                 </motion.div>
+                  );
+                })()
               ))}
 
               {galleryImages.length > 1 && (

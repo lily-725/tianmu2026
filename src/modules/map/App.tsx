@@ -118,6 +118,9 @@ export default function App() {
               <img 
                 src={zoomedImage.url} 
                 alt={zoomedImage.name}
+                loading="eager"
+                decoding="async"
+                fetchPriority="high"
                 className="max-w-full max-h-[85vh] object-contain shadow-[0_0_100px_rgba(0,0,0,0.5)] border border-white/5"
               />
               <div className="mt-6 text-center">

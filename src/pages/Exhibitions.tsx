@@ -37,6 +37,9 @@ const Exhibitions = () => (
                 <img 
                   src={withBase(ex.coverImage ?? ex.units[0]?.artifacts[0]?.imageUrls?.[0] ?? '/import/picture0.jpg')} 
                   alt={toSimplifiedLite(ex.title)} 
+                  loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
                   className="w-full h-full object-cover scale-100 group-hover:scale-105 transition-transform duration-1000"
                 />
               </div>

@@ -125,6 +125,9 @@ export default function Lightbox({
                 <img
                   src={url}
                   alt={title ?? '图片预览'}
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
                   className="w-full h-auto max-h-[82vh] object-contain mx-auto shadow-xl"
                   draggable={false}
                 />
@@ -136,4 +139,3 @@ export default function Lightbox({
     </AnimatePresence>
   );
 }
-
