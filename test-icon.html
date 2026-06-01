@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>点位图标复刻测试</title>
+  <!-- 引入 Leaflet 样式和脚本 -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    body { margin: 0; padding: 0; background: #f0eee9; }
+    #map { width: 100vw; height: 100vh; }
+    
+    /* 图标动画效果 */
+    .archive-marker-icon {
+      transition: transform 0.3s ease;
+      transform-origin: center bottom;
+      filter: drop-shadow(0 4px 8px rgba(53, 41, 29, 0.08));
+    }
+    .archive-marker-icon:hover {
+      transform: translateY(-2px) scale(1.08) !important;
+      filter: drop-shadow(0 8px 14px rgba(53, 41, 29, 0.16));
+      z-index: 1000 !important;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+
+  <script>
+    // 1. 分类配置（颜色 + SVG）
+    const pointCategories = {
+      religion: {
+        color: '#6b8f77',
+        svg: `<path d="M5 19h14" /><path d="M6 19v-4.5c0-3.3 2.7-6 6-6s6 2.7 6 6V19" /><path d="M10 19v-4h4v4" /><path d="M9.6 7.2c.7-1.5 1.7-2.2 2.4-2.2s1.7.7 2.4 2.2" />`
+      },
+      economy: {
+        color: '#b07048',
+        svg: `<path d="M4 9h16" /><path d="M6 9V7.6L7.5 5h9L18 7.6V9" /><path d="M6 9v10h12V9" /><path d="M9 13h6" /><path d="M10 19v-3.6h4V19" />`
+      },
+      education: {
+        color: '#5e7390',
+        svg: `<path d="M12 6.2c-1.8-1-3.8-1.5-6-1.5v13.1c2.2 0 4.2.5 6 1.5" /><path d="M12 6.2c1.8-1 3.8-1.5 6-1.5v13.1c-2.2 0-4.2.5-6 1.5" /><path d="M12 6v13" /><path d="M8.5 9.7h2.1" /><path d="M13.4 9.7h2.1" />`
+      },
+      life: {
+        color: '#a78354',
+        svg: `<path d="M4.8 10.5L12 4.8l7.2 5.7" /><path d="M7 9.3V19h10V9.3" /><path d="M10.2 19v-4.4h3.6V19" /><path d="M10 11.8h.01" /><path d="M14 11.8h.01" />`
+      },
+      sports: {
+        color: '#7b659a',
+        svg: `<path d="M9 4.5h6" /><path d="M9 4.5l1.4 4.6" /><path d="M15 4.5l-1.4 4.6" /><circle cx="12" cy="14" r="4.2" /><path d="m12 11.4.9 1.8 2 .3-1.5 1.5.4 2.1-1.8-.9-1.8.9.4-2.1-1.5-1.5 2-.3z" />`
+      }
+    };
+
+    // 2. 核心：动态生成 L.divIcon
+    function createIcon(type) {
+      const { color, svg } = pointCategories[type];
+      
+      // 注意：这里的 HTML 拼接非常长，确保引号没有断开
+      const htmlContent = `
+        <div style="width: 34px; height: 42px; position: relative; display: flex; align-items: center; justify-content: center;">
+          <!-- 底部小尾巴指针 -->
+          <div style="position: absolute; left: 50%; bottom: 1px; width: 14px; height: 14px; background: ${color}; transform: translateX(-50%) rotate(45deg); border-radius: 0 0 4px 0; box-shadow: 0 10px 14px rgba(27, 20, 14, 0.18);"></div>
+          
+          <!-- 主圆角背景 -->
+          <div style="position: relative; width: 34px; height: 34px; border-radius: 13px 13px 13px 9px; background: radial-gradient(circle at 30% 28%, rgba(255,255,255,0.28), transparent 38%), linear-gradient(180deg, rgba(255,255,255,0.08), rgba(49,34,22,0.12)), ${color}; border: 2px solid rgba(255, 251, 244, 0.96); box-shadow: 0 10px 20px rgba(42, 28, 18, 0.22), 0 4px 8px rgba(42, 28, 18, 0.18); display: flex; align-items: center; justify-content: center; cursor: pointer;">
+            
+            <!-- 内层白色描边装饰 -->
+            <div style="position: absolute; inset: 3px; border-radius: 10px 10px 10px 7px; border: 1px solid rgba(255,255,255,0.18);"></div>
+            
+            <!-- SVG 矢量图标 -->
+            <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; transform: translateY(-1px);" fill="none" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              ${svg}
+            </svg>
+          </div>
+        </div>
+      `;
+
+      return L.divIcon({
+        className: 'archive-marker-icon', // 挂载 CSS 动效
+        html: htmlContent,
+        iconSize: [34, 42],
+        iconAnchor: [17, 39] // 定位点在底边中心
+      });
+    }
+
+    // 3. 初始化地图
+    const map = L.map('map').setView([39.195, 117.145], 15);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png').addTo(map);
+
+    // 4. 将五个图标都加到地图上看看效果
+    const testPoints = [
+      { lat: 39.195, lng: 117.141, type: 'religion' },
+      { lat: 39.195, lng: 117.143, type: 'economy' },
+      { lat: 39.195, lng: 117.145, type: 'education' },
+      { lat: 39.195, lng: 117.147, type: 'life' },
+      { lat: 39.195, lng: 117.149, type: 'sports' }
+    ];
+
+    testPoints.forEach(p => {
+      L.marker([p.lat, p.lng], { icon: createIcon(p.type) }).addTo(map);
+    });
+  </script>
+</body>
+</html>

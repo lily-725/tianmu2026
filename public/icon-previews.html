@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>天穆导航标识示意图</title>
+    <style>
+      :root {
+        --bg: #f4f1ea;
+        --card: rgba(255, 255, 255, 0.66);
+        --ink: #1a1a1a;
+        --muted: rgba(26, 26, 26, 0.55);
+        --line: rgba(26, 26, 26, 0.12);
+        --cinnabar: #8c2a2a;
+      }
+      body {
+        margin: 0;
+        background: radial-gradient(circle at 20% 20%, rgba(140, 42, 42, 0.05), transparent 52%),
+          radial-gradient(circle at 80% 70%, rgba(156, 132, 73, 0.08), transparent 60%),
+          linear-gradient(180deg, rgba(244, 241, 234, 0.85), rgba(244, 241, 234, 1));
+        color: var(--ink);
+        font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial;
+      }
+      main {
+        width: min(1100px, calc(100% - 2.5rem));
+        margin: 0 auto;
+        padding: 3rem 0 4rem;
+      }
+      header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 2rem;
+        padding-bottom: 1.25rem;
+        border-bottom: 1px solid var(--line);
+        margin-bottom: 2rem;
+      }
+      h1 {
+        margin: 0;
+        font-size: 1.7rem;
+        letter-spacing: 0.08em;
+      }
+      p {
+        margin: 0.25rem 0 0;
+        color: var(--muted);
+        letter-spacing: 0.12em;
+        font-size: 0.9rem;
+      }
+      .hint {
+        color: var(--muted);
+        font-size: 0.85rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1rem;
+      }
+      @media (max-width: 980px) {
+        .grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+      @media (max-width: 520px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        backdrop-filter: blur(16px);
+        padding: 1.25rem;
+      }
+      .mark-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+      .mark {
+        width: 56px;
+        height: 56px;
+        border: 1px solid rgba(26, 26, 26, 0.22);
+        border-radius: 9999px;
+        display: grid;
+        place-items: center;
+        color: rgba(26, 26, 26, 0.85);
+        background: rgba(255, 255, 255, 0.4);
+      }
+      .mark svg {
+        width: 36px;
+        height: 36px;
+      }
+      .id {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        color: rgba(26, 26, 26, 0.66);
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        font-size: 0.72rem;
+        font-weight: 700;
+      }
+      .id::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border: 1px solid rgba(140, 42, 42, 0.35);
+        transform: rotate(45deg);
+        background: rgba(140, 42, 42, 0.06);
+      }
+      .name {
+        margin-top: 1.1rem;
+        font-size: 1.05rem;
+        letter-spacing: 0.08em;
+        font-weight: 650;
+      }
+      .desc {
+        margin-top: 0.55rem;
+        color: var(--muted);
+        line-height: 1.7;
+        font-size: 0.9rem;
+      }
+      .accent {
+        color: var(--cinnabar);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <div>
+          <h1>导航栏标识示意图</h1>
+          <p>用于替换现有 TM 圆形文字标记</p>
+        </div>
+        <div class="hint">Boat / Geometry</div>
+      </header>
+
+      <div class="grid">
+        <section class="card">
+          <div class="mark-row">
+            <div class="mark" aria-hidden="true">
+              <svg viewBox="0 0 64 64" fill="none">
+                <path d="M14 44c6 4 30 4 36 0" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" />
+                <path d="M20 40l12-14 12 14" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round" />
+                <path d="M32 22v28" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" />
+                <path d="M12 50c5 3 13 3 18 0" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" opacity="0.65" />
+                <path d="M34 50c5 3 13 3 18 0" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" opacity="0.65" />
+              </svg>
+            </div>
+            <div class="id">A1</div>
+          </div>
+          <div class="name">运河之舟 · 极简孤舟</div>
+          <div class="desc">三道水纹 + 舟形骨架，识别清晰、笔触克制。</div>
+        </section>
+
+        <section class="card">
+          <div class="mark-row">
+            <div class="mark" aria-hidden="true">
+              <svg viewBox="0 0 64 64" fill="none">
+                <circle cx="32" cy="32" r="18.5" stroke="currentColor" stroke-width="2.4" opacity="0.8" />
+                <path d="M20 36c4 3 20 3 24 0" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" />
+                <path d="M25 34l7-8 7 8" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round" />
+                <path d="M32 24v20" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" />
+                <path d="M18 44c5 3 10 3 14 0" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" opacity="0.55" />
+                <path d="M32 44c5 3 10 3 14 0" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" opacity="0.55" />
+              </svg>
+            </div>
+            <div class="id">A2</div>
+          </div>
+          <div class="name">运河之舟 · 徽章式舟影</div>
+          <div class="desc">在圆环内收拢图形，<span class="accent">更接近导航栏 Logo</span> 的视觉语言。</div>
+        </section>
+
+        <section class="card">
+          <div class="mark-row">
+            <div class="mark" aria-hidden="true">
+              <svg viewBox="0 0 64 64" fill="none">
+                <path d="M18 40c6 4 22 4 28 0" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" />
+                <path d="M30 22l-10 12h10V22Z" fill="currentColor" opacity="0.08" />
+                <path d="M34 22l10 12H34V22Z" fill="currentColor" opacity="0.08" />
+                <path d="M30 22l-10 12h10V22Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" />
+                <path d="M34 22l10 12H34V22Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" />
+                <path d="M32 22v28" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" />
+                <path d="M14 48c5 3 11 3 16 0" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" opacity="0.6" />
+                <path d="M34 48c5 3 11 3 16 0" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" opacity="0.6" />
+              </svg>
+            </div>
+            <div class="id">A3</div>
+          </div>
+          <div class="name">运河之舟 · 双帆几何</div>
+          <div class="desc">更几何、更“数字档案”，适合与现有字体系统搭配。</div>
+        </section>
+
+        <section class="card">
+          <div class="mark-row">
+            <div class="mark" aria-hidden="true">
+              <svg viewBox="0 0 64 64" fill="none">
+                <path d="M14 42c6 4 30 4 36 0" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" />
+                <path d="M22 40l10-10 10 10" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round" />
+                <path d="M32 26v22" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" />
+                <path d="M18 20c6-4 22-4 28 0" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" opacity="0.55" />
+              </svg>
+            </div>
+            <div class="id">A4</div>
+          </div>
+          <div class="name">运河之舟 · 书法水弧</div>
+          <div class="desc">顶部加一笔水弧，整体更像“印记”而非“图案”。</div>
+        </section>
+
+        <section class="card">
+          <div class="mark-row">
+            <div class="mark" aria-hidden="true">
+              <svg viewBox="0 0 64 64" fill="none">
+                <path
+                  d="M32 12l6.6 7.1 9.6-1.3-1.3 9.6 7.1 6.6-7.1 6.6 1.3 9.6-9.6-1.3L32 52l-6.6 7.1-9.6-1.3 1.3-9.6L10 34l7.1-6.6-1.3-9.6 9.6 1.3L32 12Z"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linejoin="round"
+                />
+                <path d="M22 34h20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" opacity="0.7" />
+                <path d="M32 24v20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" opacity="0.7" />
+              </svg>
+            </div>
+            <div class="id">B1</div>
+          </div>
+          <div class="name">几何母题 · 八角星芒</div>
+          <div class="desc">对称、庄重、工整，适合作为清真建筑语汇的抽象表达。</div>
+        </section>
+
+        <section class="card">
+          <div class="mark-row">
+            <div class="mark" aria-hidden="true">
+              <svg viewBox="0 0 64 64" fill="none">
+                <path d="M18 20h28v6H18v-6Z" stroke="currentColor" stroke-width="2.4" />
+                <path d="M18 38h28v6H18v-6Z" stroke="currentColor" stroke-width="2.4" />
+                <path d="M22 20v24" stroke="currentColor" stroke-width="2.4" opacity="0.7" />
+                <path d="M42 20v24" stroke="currentColor" stroke-width="2.4" opacity="0.7" />
+                <path d="M26 26h12v12H26V26Z" stroke="currentColor" stroke-width="2.2" opacity="0.65" />
+              </svg>
+            </div>
+            <div class="id">B2</div>
+          </div>
+          <div class="name">几何母题 · 交织纹样</div>
+          <div class="desc">抽象“回纹/织锦”的交织结构，识别度强、现代感更高。</div>
+        </section>
+
+        <section class="card">
+          <div class="mark-row">
+            <div class="mark" aria-hidden="true">
+              <svg viewBox="0 0 64 64" fill="none">
+                <path
+                  d="M32 10l18 10v24L32 54 14 44V20L32 10Z"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linejoin="round"
+                />
+                <path d="M14 20l18 10 18-10" stroke="currentColor" stroke-width="2.2" opacity="0.65" stroke-linejoin="round" />
+                <path d="M32 30v24" stroke="currentColor" stroke-width="2.2" opacity="0.65" stroke-linecap="round" />
+              </svg>
+            </div>
+            <div class="id">B3</div>
+          </div>
+          <div class="name">几何母题 · 立体档案匣</div>
+          <div class="desc">更偏“档案馆”语义，像一个被封存与开启的盒匣。</div>
+        </section>
+
+        <section class="card">
+          <div class="mark-row">
+            <div class="mark" aria-hidden="true">
+              <svg viewBox="0 0 64 64" fill="none">
+                <path d="M16 32c0-8.8 7.2-16 16-16s16 7.2 16 16-7.2 16-16 16S16 40.8 16 32Z" stroke="currentColor" stroke-width="2.4" />
+                <path d="M20 32h24" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity="0.65" />
+                <path d="M32 20v24" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity="0.65" />
+                <path d="M24 24l16 16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" opacity="0.55" />
+                <path d="M40 24L24 40" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" opacity="0.55" />
+              </svg>
+            </div>
+            <div class="id">B4</div>
+          </div>
+          <div class="name">几何母题 · 现代罗盘</div>
+          <div class="desc">更偏“地图/方位”的抽象表达，适合与“时空地图”形成呼应。</div>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>

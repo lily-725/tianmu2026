@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", "Georgia", serif;
+  
+  --color-parchment: #F4F1EA;
+  --color-parchment-light: #fcfaf7;
+  --color-ink: #1A1A1A;
+  --color-cinnabar: #8C2A2A;
+  --color-cinnabar-dark: #6b1f1f;
+  --color-oldgold: #9c8449;
+}
+
+@layer base {
+  body {
+    @apply bg-parchment text-ink font-serif antialiased;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply relative min-h-screen w-full flex flex-col items-center justify-center py-32 px-8 md:px-24;
+  }
+
+  /* 关于天穆 章节样式 */
+  .about-content-wrapper {
+    @apply grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-7xl w-full;
+  }
+
+  .about-text-card {
+    @apply relative z-10 space-y-8 bg-white/40 backdrop-blur-md p-10 md:p-16 border border-white/30 shadow-2xl;
+  }
+
+  .about-decorative-text {
+    @apply absolute -top-12 -left-8 text-[12rem] font-serif text-cinnabar/5 pointer-events-none select-none;
+  }
+
+  .about-image-collage {
+    @apply relative h-[500px] w-full hidden lg:block;
+  }
+
+  .collage-img {
+    @apply absolute border-4 border-white shadow-2xl transition-transform duration-700 hover:z-20 hover:scale-105;
+  }
+
+  /* 策展团队 章节样式 */
+  .team-section-title {
+    @apply text-center mb-20 relative;
+  }
+
+  .team-section-title h2 {
+    @apply text-6xl md:text-7xl font-serif text-ink tracking-tight;
+  }
+
+  .team-section-title::after {
+    content: "";
+    @apply absolute -bottom-6 left-1/2 -translate-x-1/2 w-24 h-px bg-cinnabar/40;
+  }
+
+  .team-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-12 w-full max-w-5xl;
+  }
+
+  .team-member-box {
+    @apply flex flex-col gap-3 p-8 bg-white/20 border border-ink/5 backdrop-blur-sm transition-all duration-500 hover:bg-white/40 hover:border-cinnabar/20;
+  }
+
+  .team-role {
+    @apply font-sans text-[10px] font-bold tracking-[0.3em] uppercase text-cinnabar/70;
+  }
+
+  .team-names {
+    @apply font-serif text-3xl text-ink/90;
+  }
+
+  .acknowledgment-area {
+    @apply mt-24 max-w-4xl w-full border-t border-ink/10 pt-16;
+  }
+
+  .ack-text {
+    @apply text-lg leading-relaxed text-justify font-serif font-light italic opacity-70 mb-8;
+  }
+
+  .contact-badge {
+    @apply inline-flex items-center gap-3 px-6 py-3 rounded-full bg-ink/5 border border-ink/5 text-[10px] font-sans tracking-widest opacity-60 hover:opacity-100 transition-opacity;
+  }
+
+  .historical-line {
+    @apply w-[2px] h-[240px] bg-cinnabar absolute top-0 left-[60px] z-10;
+  }
+
+  .watermark {
+    @apply absolute text-[220px] font-[900] text-black/[0.03] top-[150px] -left-[50px] z-0 pointer-events-none tracking-[-10px] leading-none;
+    font-family: var(--font-sans);
+  }
+
+  .stamp {
+    @apply w-[120px] h-[120px] border-[3px] border-cinnabar text-cinnabar flex flex-col items-center justify-center text-center font-bold text-[16px] leading-[1.2] -rotate-12 absolute bottom-[60px] left-[60px] opacity-80 z-20;
+    font-family: var(--font-serif);
+    box-shadow: inset 0 0 10px rgba(140, 42, 42, 0.2), 0 4px 12px rgba(0,0,0,0.1);
+    background: rgba(244, 241, 234, 0.4);
+    backdrop-filter: blur(2px);
+  }
+
+  .stamp::after {
+    content: "";
+    @apply absolute inset-1 border border-cinnabar/30;
+  }
+
+  .nav-button {
+    @apply relative overflow-hidden border border-ink bg-transparent py-6 px-[60px] w-full max-w-[340px] text-center cursor-pointer transition-all duration-500 ease-out uppercase font-light tracking-[4px] text-xl z-10;
+    font-family: var(--font-sans);
+  }
+
+  .nav-button::before {
+    content: "";
+    @apply absolute inset-0 bg-ink translate-y-full transition-transform duration-500 ease-out -z-10;
+  }
+
+  .nav-button:hover {
+    @apply text-parchment scale-[1.05] border-transparent shadow-2xl;
+  }
+
+  .nav-button:hover::before {
+    @apply translate-y-0;
+  }
+
+  .vertical-rail {
+    @apply [writing-mode:vertical-rl] rotate-180 absolute right-[30px] top-1/2 -translate-y-1/2 text-[10px] uppercase tracking-[4px] text-black/40 font-sans;
+  }
+
+  .glass-panel {
+    @apply bg-white/20 backdrop-blur-md border-l border-white/30 shadow-2xl;
+  }
+
+  /* 装饰性元素 */
+  .ornament-corner {
+    @apply absolute w-32 h-32 border-cinnabar/20 pointer-events-none z-0;
+  }
+
+  .ornament-corner-tl { @apply top-12 left-12 border-t-2 border-l-2; }
+  .ornament-corner-tr { @apply top-12 right-12 border-t-2 border-r-2; }
+  .ornament-corner-bl { @apply bottom-12 left-12 border-b-2 border-l-2; }
+  .ornament-corner-br { @apply bottom-12 right-12 border-b-2 border-r-2; }
+
+  .paper-texture-overlay {
+    @apply absolute inset-0 pointer-events-none z-0 opacity-[0.07] mix-blend-multiply;
+    background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+  }
+
+  .map-bg-layer {
+    @apply absolute inset-0 opacity-[0.12] grayscale contrast-[1.2] mix-blend-multiply transition-opacity duration-1000;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .ink-bleed {
+    @apply absolute w-[600px] h-[600px] bg-black/[0.02] blur-[120px] rounded-full pointer-events-none;
+  }
+}
+
+/* Custom Marker Pulse */
+.marker-pulse {
+  background-color: var(--color-cinnabar);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+  box-shadow: 0 0 0 0 rgba(140, 42, 42, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.marker-inner {
+  width: 6px;
+  height: 6px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(140, 42, 42, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(140, 42, 42, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(140, 42, 42, 0); }
+}
+
+/* Hide Scrollbars */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Map Overlay Fade */
+.leaflet-container {
+  background: #f4f1ea !important;
+}
