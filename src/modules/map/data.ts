@@ -5,9 +5,12 @@ import {
 } from "./csv_points";
 import { withBase } from "../../lib/base";
 
-const normalizeHistoricalImage = <T extends { url: string }>(image: T): T => ({
+const normalizeHistoricalImage = <T extends { url: string; thumbnailUrl?: string }>(
+  image: T,
+): T => ({
   ...image,
   url: withBase(image.url),
+  thumbnailUrl: image.thumbnailUrl ? withBase(image.thumbnailUrl) : image.thumbnailUrl,
 });
 
 const normalizeArea = <T extends { images?: Array<{ url: string }> }>(
