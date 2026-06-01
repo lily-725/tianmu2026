@@ -1161,16 +1161,13 @@ const MapDisplayImpl = ({ activePeriod, onFeatureSelect, selectedFeature }: MapD
                     eventHandlers={{
                       click: () => onFeatureSelect({
                         type: 'road',
-                        title: isAncient ? '京津古道 (天穆驿道)' : '京津古道 (京津公路)',
+                        title: "京津公路",
                         tag: isAncient ? 'Ancient Road' : 'Highway',
+                        description: "穿过天穆村，前身为明清驿道和北运河大堤。1921年，道路竣工但仍为土路，在日伪期间延长并改铺为水泥路面单车道。直到五十年代末，天穆村一带随运河转弯的道路裁弯取直，才最终修成线性的一级公路，南段称天穆大道京津公路。",
                         images: [
-                          { url: 'https://images.unsplash.com/photo-1505672678657-cc7037095e60?q=80&w=1000&auto=format&fit=crop', name: '驿道遗迹考察', source: '地理探测数据' },
-                          { url: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1000&auto=format&fit=crop', name: '古道沿线地貌', source: '清末舆图研究' }
-                        ],
-                        description: isAncient 
-                          ? '此时期的京津商路保持着传统的泥沙与黄土夯实形态，两旁高槐垂柳，落叶萧萧。在运运渐衰时代，此古道成为串联村落与南北重镇的核心大御道。'
-                          : '连接北京与天津的陆路大道路，进入现代拓宽并覆上沥青，进化为天穆地区交通与城市化商业繁荣的主干线——京津公路。'
-                      })
+                          { url: "/shuru/gonglu.jpg", name: "京津公路建设的报道", source: "《The North-China Daily News》，1938 年 3 月 27 日， 第9版" },
+                         ]
+                        })
                     }}
                     pathOptions={{ 
                       color: roadColor, 
