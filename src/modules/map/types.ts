@@ -2,6 +2,7 @@ export type PointType = 'religion' | 'economy' | 'education' | 'life' | 'sports'
 
 export interface HistoricalImage {
   url: string;
+  thumbnailUrl?: string;
   name: string;
   source: string;
 }

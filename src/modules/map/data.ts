@@ -117,11 +117,13 @@ const BASE_HISTORICAL_DATA: PeriodData[] = [
         images: [
           {
             url: "/shuru/zupu.jpg",
+            thumbnailUrl: "/shuru/thumb_zupu.jpg",
             name: "明万历三十六年（1609）《穆太和族谱》",
             source: "《天津穆氏族谱》编修委员会收藏",
           },
           {
             url: "/shuru/caoyun1.jpg",
+            thumbnailUrl: "/shuru/thumb_caoyun1.jpg",
             name: "《津门保甲图说》中的天穆村地理位置",
             source: "《津门保甲图说》清道光二十六年刻本",
           },
@@ -148,11 +150,13 @@ const BASE_HISTORICAL_DATA: PeriodData[] = [
         images: [
           {
             url: "/shuru/zupu.jpg",
+            thumbnailUrl: "/shuru/thumb_zupu.jpg",
             name: "明万历三十六年（1609）《穆太和族谱》",
             source: "《天津穆氏族谱》编修委员会收藏",
           },
           {
             url: "/shuru/caoyun1.jpg",
+            thumbnailUrl: "/shuru/thumb_caoyun1.jpg",
             name: "《津门保甲图说》中的天穆村地理位置",
             source: "《津门保甲图说》清道光二十六年刻本",
           },
@@ -277,11 +281,13 @@ const BASE_HISTORICAL_DATA: PeriodData[] = [
         images: [
           {
             url: "/ditu/1926tj.jpg",
+            thumbnailUrl: "/ditu/thumb_1926tj.jpg",
             name: "1926年穆家庄、天齐庙地图",
             source: "https://mhdb.mh.sinica.edu.tw/MHGIS/",
           },
           {
             url: "/ditu/1940tj.jpg",
+            thumbnailUrl: "/ditu/thumb_1940tj.jpg",
             name: "20世纪40年代穆家庄、天齐庙地图",
             source: "https://mhdb.mh.sinica.edu.tw/MHGIS/",
           },
@@ -305,18 +311,20 @@ const BASE_HISTORICAL_DATA: PeriodData[] = [
           [39.19163232568819, 117.14923130155462],
           [39.19243062440137, 117.14827009599463],
           [39.19198918045248, 117.14696104973069],
-          [39.19167939890279, 117.1458842048205],
+          [39.19167939890279, 117.145884205],
           [39.19174811922835, 117.14455135704668],
           [39.19142704348582, 117.14350419593632],
         ],
         images: [
           {
             url: "/ditu/1926tj.jpg",
+            thumbnailUrl: "/ditu/thumb_1926tj.jpg",
             name: "1926年穆家庄、天齐庙地图",
             source: "https://mhdb.mh.sinica.edu.tw/MHGIS/",
           },
           {
             url: "/ditu/1940tj.jpg",
+            thumbnailUrl: "/ditu/thumb_1940tj.jpg",
             name: "20世纪40年代穆家庄、天齐庙地图",
             source: "https://mhdb.mh.sinica.edu.tw/MHGIS/",
           },
@@ -411,6 +419,7 @@ const BASE_HISTORICAL_DATA: PeriodData[] = [
         images: [
           {
             url: "/shuru/shouhuitu.jpg",
+            thumbnailUrl: "/shuru/thumb_shouhuitu.jpg",
             name: "穆瑞信所绘天穆村20世纪50年代村落图",
             source:
               "魏积良主编：《天穆清真南寺简史》，北京：中国文化出版社，2018年，在序之前，无页码。",
@@ -508,11 +517,13 @@ const BASE_HISTORICAL_DATA: PeriodData[] = [
         images: [
           {
             url: "/shuru/2004tj.jpg",
+            thumbnailUrl: "/shuru/thumb_2004tj.jpg",
             name: "天穆村旧貌 2004年 航拍",
             source: "https://mp.weixin.qq.com/s/tUF7F8tc92pcQyNoCGkswg",
           },
           {
             url: "/shuru/2018tj.jpg",
+            thumbnailUrl: "/shuru/thumb_2018tj.jpg",
             name: "天穆村新貌 2018年 航拍",
             source: "https://mp.weixin.qq.com/s/tUF7F8tc92pcQyNoCGkswg",
           },
@@ -557,16 +568,19 @@ const BASE_HISTORICAL_DATA: PeriodData[] = [
         images: [
           {
             url: "/shuru/waiyuan1.jpg",
+            thumbnailUrl: "/shuru/thumb_waiyuan1.jpg",
             name: "外园街景",
             source: "2023年实地调研拍摄",
           },
           {
             url: "/shuru/waiyuan2.jpg",
+            thumbnailUrl: "/shuru/thumb_waiyuan2.jpg",
             name: "外园街景",
             source: "2023年实地调研拍摄",
           },
           {
             url: "/shuru/waiyuan3.jpg",
+            thumbnailUrl: "/shuru/thumb_waiyuan3.jpg",
             name: "外园街景",
             source: "2023年实地调研拍摄",
           },
@@ -589,6 +603,7 @@ const BASE_HISTORICAL_DATA: PeriodData[] = [
         images: [
           {
             url: "/shuru/shunyili.jpg",
+            thumbnailUrl: "/shuru/thumb_shunyili.jpg",
             name: "顺义里街景",
             source: "2023年实地调研拍摄",
           },
@@ -614,11 +629,13 @@ const BASE_HISTORICAL_DATA: PeriodData[] = [
         images: [
           {
             url: "/shuru/tmdy1.jpg",
+            thumbnailUrl: "/shuru/thumb_tmdy1.jpg",
             name: "天穆东苑门牌",
             source: "2023年实地调研拍摄",
           },
           {
             url: "/shuru/tmdy2.jpg",
+            thumbnailUrl: "/shuru/thumb_tmdy2.jpg",
             name: "天穆镇天穆东苑社区展牌",
             source: "2023年实地调研拍摄",
           },

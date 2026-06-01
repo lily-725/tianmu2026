@@ -108,8 +108,10 @@ export const SidebarDefault = ({ activePeriod, onImageZoom }: SidebarDefaultProp
                   onClick={() => onImageZoom(img)}
                 >
                   <img
-                    src={img.url}
+                    src={img.thumbnailUrl || img.url}
                     alt={img.name}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 via-black/40 to-transparent">

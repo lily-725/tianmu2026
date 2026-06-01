@@ -81,7 +81,7 @@ export const FeatureDetail = ({ feature, onBack, onImageZoom }: FeatureDetailPro
                         onClick={() => onImageZoom(img)}
                       >
                         <img 
-                          src={img.url} 
+                          src={img.thumbnailUrl || img.url} 
                           alt={img.name} 
                           referrerPolicy="no-referrer"
                           loading={isFirst ? 'eager' : 'lazy'}
