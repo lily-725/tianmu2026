@@ -6,9 +6,12 @@ import {defineConfig, loadEnv} from 'vite';
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
   const isGitHubActions = process.env.GITHUB_ACTIONS === 'true';
+  const repoName = process.env.GITHUB_REPOSITORY?.split('/')[1];
+  const pagesBase =
+    isGitHubActions && repoName && !repoName.endsWith('.github.io') ? `/${repoName}/` : '/';
   return {
     // GitHub Pages 仓库站点路径（https://<user>.github.io/<repo>/）
-    base: isGitHubActions ? '/tianmu2026/' : '/',
+    base: pagesBase,
     plugins: [react(), tailwindcss()],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),

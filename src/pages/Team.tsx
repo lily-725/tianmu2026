@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
 import { team } from '../content';
 import { FADE_IN_VARIANTS } from '../constants';
+import { withBase } from '../lib/base';
 
 const Team = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -35,19 +36,19 @@ const Team = () => {
           style={{ y: useTransform(scrollYProgress, [0, 1], [50, -150]) }}
           className="absolute top-[10%] -left-40 w-80 h-60 opacity-[0.05] grayscale rotate-12"
         >
-          <img src="/shuru/zupu.jpg" className="w-full h-full object-cover rounded-lg" alt="" />
+          <img src={withBase('/shuru/zupu.jpg')} className="w-full h-full object-cover rounded-lg" alt="" />
         </motion.div>
         <motion.div 
           style={{ y: useTransform(scrollYProgress, [0, 1], [-50, 200]) }}
           className="absolute top-[40%] -right-48 w-96 h-72 opacity-[0.04] grayscale -rotate-6"
         >
-          <img src="/shuru/qingshi.jpg" className="w-full h-full object-cover rounded-lg" alt="" />
+          <img src={withBase('/shuru/qingshi.jpg')} className="w-full h-full object-cover rounded-lg" alt="" />
         </motion.div>
         <motion.div 
           style={{ y: useTransform(scrollYProgress, [0, 1], [100, -100]) }}
           className="absolute bottom-[10%] -left-32 w-64 h-80 opacity-[0.05] grayscale -rotate-12"
         >
-          <img src="/shuru/mu1937.jpg" className="w-full h-full object-cover rounded-lg" alt="" />
+          <img src={withBase('/shuru/mu1937.jpg')} className="w-full h-full object-cover rounded-lg" alt="" />
         </motion.div>
       </div>
 
