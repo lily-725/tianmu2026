@@ -51,7 +51,7 @@ const Collections = () => {
               className="block relative aspect-square overflow-hidden bg-brand-soft-grey group shadow-sm"
             >
               <img 
-                src={url ?? withBase('/import/picture0.jpg')} 
+                src={withBase(url ?? '/import/picture0.jpg')} 
                 alt={displayTitle || art.title} 
                 className="w-full h-full object-cover scale-100 group-hover:scale-110 transition-transform duration-1000" 
               />
