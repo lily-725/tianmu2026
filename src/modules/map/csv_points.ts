@@ -375,7 +375,7 @@ export const CSV_LINEAR_FEATURES_BY_PERIOD: Record<string, Partial<Record<'river
     road: {
       type: 'road',
       title: "京津公路",
-      description: "京津公路穿过天穆村，前身为明清驿道和北运河大堤。1921年，道路竣工但仍为土路，在日伪期间延长并改铺为水泥路面单车道。直到五十年代末，天穆村一带随运河转弯的道路裁弯取直，才最终修成线性的一级公路，南段称天穆大道。",
+      description: "穿过天穆村，前身为明清驿道和北运河大堤。1921年，道路竣工但仍为土路，在日伪期间延长并改铺为水泥路面单车道。直到五十年代末，天穆村一带随运河转弯的道路裁弯取直，才最终修成线性的一级公路，南段称天穆大道京津公路。",
       images: [
         { url: "/shuru/gonglu.jpg", name: "京津公路建设的报道", source: "《The North-China Daily News》，1938 年 3 月 27 日， 第9版" },
       ],
