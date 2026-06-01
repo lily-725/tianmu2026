@@ -12,24 +12,13 @@ function ensureImageUrls(a: Artifact): string[] {
   return urls.map((url) => withBase(url));
 }
 
-function ensureThumbnailUrls(a: Artifact): string[] {
-  const urls = a.imageUrls?.length ? a.imageUrls : ['/import/picture0.jpg'];
-  return urls.map((url) => {
-    const parts = url.split('/');
-    const filename = parts.pop() || '';
-    const dir = parts.join('/');
-    return withBase(`${dir}/thumb_${filename}`);
-  });
-}
-
 /**
  * 统一对外提供的 artifacts（以 rawArtifacts 为准）
  * - 仅做 imageUrls fallback，不改动文本
  */
 export const artifacts: Artifact[] = (rawArtifacts as Artifact[]).map((a) => ({
   ...a,
-  imageUrls: ensureImageUrls(a),
-  thumbnailUrls: ensureThumbnailUrls(a)
+  imageUrls: ensureImageUrls(a)
 }));
 
 const artifactById = new Map<string, Artifact>(artifacts.map((a) => [a.id, a]));

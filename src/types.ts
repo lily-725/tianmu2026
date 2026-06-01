@@ -4,7 +4,6 @@ export interface Artifact {
   description: string;
   source: string;
   imageUrls: string[];
-  thumbnailUrls?: string[];
   theme: string;
   subtheme: string;
 }
