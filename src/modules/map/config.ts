@@ -21,7 +21,7 @@ export const MAP_CONFIG = {
   VISUAL: {
     BEARING: 35,          // 旋转角度 (顺时针度数)
     ZOOM_OFFSET: 0.4,      // 缩放偏移量 (值越大越近)
-    MIN_BASE_ZOOM: 15.6,   // 固定桌面端基础缩放，避免小屏容器自动降级导致地图范围变大
+    MIN_BASE_ZOOM: 15,   // 固定桌面端基础缩放，避免小屏容器自动降级导致地图范围变大
     LAT_OFFSET: 0.0,       // 经纬度垂直偏移量 (用于微调视窗焦点)
     LNG_OFFSET: 0.0,       // 经纬向水平偏移量
   },
