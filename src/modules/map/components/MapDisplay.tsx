@@ -33,7 +33,10 @@ function MapController() {
 
       map.fitBounds(ARCHIVE_BOUNDS, { padding: [0, 0], animate: false });
       
-      const baseZoom = map.getBoundsZoom(ARCHIVE_BOUNDS, false);
+      const baseZoom = Math.max(
+        map.getBoundsZoom(ARCHIVE_BOUNDS, false),
+        MAP_CONFIG.VISUAL.MIN_BASE_ZOOM
+      );
       const finalZoom = baseZoom + MAP_CONFIG.VISUAL.ZOOM_OFFSET;
       
       map.setZoom(finalZoom);
