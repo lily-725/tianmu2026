@@ -154,7 +154,7 @@ export default function SiteHome() {
         <div className="home-container">
           <div className="about-content-wrapper">
             <motion.div
-              initial={{ x: -50 }}
+              initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               className="about-text-card relative"
@@ -173,7 +173,7 @@ export default function SiteHome() {
 
             <div className="about-image-collage relative h-[700px] translate-y-8 md:translate-y-12">
               <motion.div
-                initial={{ rotate: -10, x: -24, y: 42 }}
+                initial={{ rotate: -10, x: -24, y: 42, opacity: 0 }}
                 whileInView={{ rotate: -7, x: 0, y: 0, opacity: 1 }}
                 viewport={{ once: true }}
                 className="collage-img collage-img--left w-64 h-80 top-5 left-5 z-20"
@@ -183,7 +183,7 @@ export default function SiteHome() {
               </motion.div>
 
               <motion.div
-                initial={{ rotate: 14, x: 20, y: -36 }}
+                initial={{ rotate: 14, x: 20, y: -36, opacity: 0 }}
                 whileInView={{ rotate: 11, x: 0, y: 0, opacity: 1 }}
                 viewport={{ once: true }}
                 className="collage-img collage-img--right w-62 h-42 top-12 right-10 z-10"
@@ -192,7 +192,7 @@ export default function SiteHome() {
               </motion.div>
 
               <motion.div
-                initial={{ rotate: 5, scale: 0.84, y: 18 }}
+                initial={{ rotate: 5, scale: 0.84, y: 18, opacity: 0 }}
                 whileInView={{ rotate: 2, scale: 1, y: 0, opacity: 1 }}
                 viewport={{ once: true }}
                 className="collage-img w-60 h-76 top-38 right-16 z-30"
@@ -201,7 +201,7 @@ export default function SiteHome() {
               </motion.div>
 
               <motion.div
-                initial={{ rotate: -4, x: -36, y: 20 }}
+                initial={{ rotate: -4, x: -36, y: 20, opacity: 0 }}
                 whileInView={{ rotate: -8, x: 0, y: 0, opacity: 1 }}
                 viewport={{ once: true }}
                 className="collage-img collage-img--left w-54 h-56 bottom-18 left-17 z-10"
@@ -210,7 +210,7 @@ export default function SiteHome() {
               </motion.div>
 
               <motion.div
-                initial={{ rotate: 7, scale: 0.92, x: 18 }}
+                initial={{ rotate: 7, scale: 0.92, x: 18, opacity: 0 }}
                 whileInView={{ rotate: 9, scale: 1, x: 0, opacity: 1 }}
                 viewport={{ once: true }}
                 className="collage-img collage-img--right w-46 h-62 bottom-2 right-32 z-20"
@@ -219,7 +219,7 @@ export default function SiteHome() {
               </motion.div>
 
               <motion.div
-                initial={{ rotate: -12, y: 18 }}
+                initial={{ rotate: -12, opacity: 0, y: 18 }}
                 whileInView={{ rotate: -14, opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 className="collage-img collage-img--ghost w-40 h-28 top-[78%] left-[3%] z-0 opacity-28"
@@ -236,7 +236,7 @@ export default function SiteHome() {
           <div className="team-content-wrapper">
             <div className="team-image-collage order-2 lg:order-1 relative h-[660px]">
               <motion.div
-                initial={{ rotate: 11, x: -18, y: 44 }}
+                initial={{ rotate: 11, x: -18, y: 44, opacity: 0 }}
                 whileInView={{ rotate: 7, x: 0, y: 0, opacity: 1 }}
                 viewport={{ once: true }}
                 className="collage-img collage-img--left w-78 h-54 top-4 left-3 z-20"
@@ -245,7 +245,7 @@ export default function SiteHome() {
               </motion.div>
 
               <motion.div
-                initial={{ rotate: -11, x: 20, y: -34 }}
+                initial={{ rotate: -11, x: 20, y: -34, opacity: 0 }}
                 whileInView={{ rotate: -8, x: 0, y: 0, opacity: 1 }}
                 viewport={{ once: true }}
                 className="collage-img collage-img--right w-78 h-54 bottom-4 right-0 z-10"
@@ -254,7 +254,7 @@ export default function SiteHome() {
               </motion.div>
 
               <motion.div
-                initial={{ rotate: 4, scale: 0.88, y: 18 }}
+                initial={{ rotate: 4, scale: 0.88, y: 18, opacity: 0 }}
                 whileInView={{ rotate: 2, scale: 1, y: 0, opacity: 1 }}
                 viewport={{ once: true }}
                 className="collage-img w-70 h-50 top-28 right-16 z-30"
@@ -263,7 +263,7 @@ export default function SiteHome() {
               </motion.div>
 
               <motion.div
-                initial={{ rotate: -6, x: 26, y: 12 }}
+                initial={{ rotate: -6, opacity: 0, x: 26, y: 12 }}
                 whileInView={{ rotate: -9, opacity: 1, x: 0, y: 0 }}
                 viewport={{ once: true }}
                 className="collage-img collage-img--left w-40 h-52 bottom-14 left-16 z-20"
@@ -272,7 +272,7 @@ export default function SiteHome() {
               </motion.div>
 
               <motion.div
-                initial={{ rotate: 14, scale: 0.84 }}
+                initial={{ rotate: 14, opacity: 0, scale: 0.84 }}
                 whileInView={{ rotate: 12, opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 className="collage-img collage-img--ghost collage-img--right w-42 h-54 top-[50%] left-[32%] z-0 opacity-24"
@@ -282,7 +282,7 @@ export default function SiteHome() {
             </div>
 
             <motion.div
-              initial={{ x: 50 }}
+              initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               className="team-text-card order-1 lg:order-2 relative"
