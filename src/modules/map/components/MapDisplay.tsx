@@ -1,5 +1,5 @@
 import { useEffect, memo, useMemo, useRef } from 'react';
-import { MapContainer, TileLayer, Polyline, Marker, Polygon, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, Polyline, Marker, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet-rotate';
 import { ARCHIVE_BOUNDS, MAP_CONFIG } from '../config';
@@ -910,8 +910,8 @@ const getOffsetPath = (coords: [number, number][], offsetFactor: number): [numbe
 const MapDisplayImpl = ({ activePeriod, onFeatureSelect, selectedFeature }: MapDisplayProps) => {
   const hasSelection = !!selectedFeature;
   const smoothedRiverPath = useMemo(() => smoothPath(activePeriod.riverPath), [activePeriod.riverPath]);
-  const leftExpandedRiverPath = useMemo(
-    () => getOffsetPath(smoothedRiverPath, -0.0003),
+  const unifiedRiverPath = useMemo(
+    () => getOffsetPath(smoothedRiverPath, -0.00015),
     [smoothedRiverPath]
   );
   const adjustedResidentialAreas = useMemo(() => {
@@ -1038,30 +1038,6 @@ const MapDisplayImpl = ({ activePeriod, onFeatureSelect, selectedFeature }: MapD
               const isRiverSelected = selectedFeature?.type === 'river';
               return (
                 <>
-                  <Polyline
-                    pathOptions={{
-                      color: MAP_CONFIG.COLORS.RIVER,
-                      weight: isRiverSelected ? 26 : 22,
-                      opacity: 1,
-                      lineCap: 'round',
-                      lineJoin: 'round',
-                      interactive: false
-                    }}
-                    positions={leftExpandedRiverPath}
-                  />
-
-                  <Polyline
-                    className="river-wave-overlay river-wave-overlay-extended"
-                    pathOptions={{
-                      color: 'transparent',
-                      weight: isRiverSelected ? 18 : 14,
-                      lineCap: 'round',
-                      lineJoin: 'round',
-                      interactive: false
-                    }}
-                    positions={leftExpandedRiverPath}
-                  />
-
                   <Polyline 
                     eventHandlers={{
                       click: () => onFeatureSelect({
@@ -1077,25 +1053,25 @@ const MapDisplayImpl = ({ activePeriod, onFeatureSelect, selectedFeature }: MapD
                     className={`river-underlay ${isRiverSelected ? 'feature-highlight' : ''}`}
                     pathOptions={{ 
                       color: MAP_CONFIG.COLORS.RIVER, 
-                      weight: isRiverSelected ? 28 : 24,
+                      weight: isRiverSelected ? 52 : 46,
                       opacity: 1,
                       lineCap: 'round', 
                       lineJoin: 'round',
                       cursor: 'pointer' 
                     }} 
-                    positions={smoothedRiverPath}
+                    positions={unifiedRiverPath}
                   />
 
                   <Polyline 
                     className="river-wave-overlay"
                     pathOptions={{ 
                       color: 'transparent', 
-                      weight: isRiverSelected ? 28 : 24,
+                      weight: isRiverSelected ? 46 : 40,
                       lineCap: 'round',
                       lineJoin: 'round',
                       interactive: false 
                     }} 
-                    positions={smoothedRiverPath}
+                    positions={unifiedRiverPath}
                   />
                 </>
               );

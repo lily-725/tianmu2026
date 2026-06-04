@@ -15,6 +15,9 @@ const WAVEFORM_BARS = [
   90, 70, 50, 40, 60, 80, 95, 60, 40, 30
 ];
 
+const getPreviewUrl = (url: string) =>
+  url.replace(/\/ditu\/(?!thumb_)([^/?#]+)([?#].*)?$/i, '/ditu/thumb_$1$2');
+
 export const SidebarDefault = ({ activePeriod, onImageZoom }: SidebarDefaultProps) => {
   const [isOralPlaying, setIsOralPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -112,7 +115,7 @@ export const SidebarDefault = ({ activePeriod, onImageZoom }: SidebarDefaultProp
                   onClick={() => onImageZoom(img)}
                 >
                   <img
-                    src={img.url}
+                    src={getPreviewUrl(img.url)}
                     alt={img.name}
                     loading={isActive ? 'eager' : 'lazy'}
                     decoding="async"
