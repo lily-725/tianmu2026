@@ -440,12 +440,22 @@
 }
 
 .home-module-theme .collage-img {
-  @apply absolute border-4 border-white shadow-2xl transition-transform duration-700 hover:z-20 hover:scale-105;
+  @apply absolute border-4 border-white shadow-2xl transition-transform duration-700 hover:z-40 hover:scale-105;
   border-radius: 2px;
   background: rgba(255, 252, 246, 0.92);
   box-shadow:
     0 16px 28px rgba(26, 26, 26, 0.12),
     0 2px 8px rgba(26, 26, 26, 0.06);
+}
+
+.home-module-theme .about-image-collage:has(.collage-img:hover) .collage-img:not(:hover),
+.home-module-theme .team-image-collage:has(.collage-img:hover) .collage-img:not(:hover) {
+  pointer-events: none;
+}
+
+.home-module-theme .about-image-collage:has(.collage-img:hover) .collage-img:hover,
+.home-module-theme .team-image-collage:has(.collage-img:hover) .collage-img:hover {
+  pointer-events: auto;
 }
 
 .home-module-theme .collage-img::after {
