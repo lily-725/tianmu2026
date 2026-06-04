@@ -6,6 +6,7 @@ import { Header } from './components/Header';
 import { Timeline } from './components/Timeline';
 import { SidebarDefault } from './components/SidebarDefault';
 import { X } from 'lucide-react';
+import { withBase } from '../../lib/base';
 
 const MapDisplay = lazy(() =>
   import('./components/MapDisplay').then(module => ({ default: module.MapDisplay }))
@@ -116,7 +117,7 @@ export default function App() {
               onClick={e => e.stopPropagation()}
             >
               <img 
-                src={zoomedImage.url} 
+                src={withBase(zoomedImage.url)} 
                 alt={zoomedImage.name}
                 loading="eager"
                 decoding="async"

@@ -13,6 +13,7 @@ import {
   scalePolygon,
   shrinkPolygonNearPolyline
 } from '../geometry';
+import { withBase } from '../../../lib/base';
 
 interface MapDisplayProps {
   activePeriod: PeriodData;
@@ -1049,7 +1050,7 @@ const MapDisplayImpl = ({ activePeriod, onFeatureSelect, selectedFeature }: MapD
                         title: '北运河',
                         tag: 'River Way',
                         images: [
-                          { url: '/import/picture1.jpg', name: '北运河', source: '无' }
+                          { url: withBase('/import/picture1.jpg'), name: '北运河', source: '无' }
                         ],
                         description: '自元代始，北运河便是京畿漕运咽喉。明永乐二年，穆氏先祖立庄时获赐漕船，依北运河为业、靠漕运扎根立足。民国时期，天穆村民先后创办河运公司、船运保险机构。丰沛的运河水域资源，也让天穆村孕育了深厚水上体育底蕴，获评游泳之乡，1933年村内组建游泳队，健儿屡在国内外赛事摘得佳绩。1956年，开展拓宽调直工程，改造村域运河弯道，原有运河故道先改为公社鱼塘，后逐步废弃填平。'
                       })
@@ -1160,7 +1161,7 @@ const MapDisplayImpl = ({ activePeriod, onFeatureSelect, selectedFeature }: MapD
                         tag: isAncient ? 'Ancient Road' : 'Highway',
                         description: "穿过天穆村，前身为明清驿道和北运河大堤。1921年，道路竣工但仍为土路，在日伪期间延长并改铺为水泥路面单车道。直到五十年代末，天穆村一带随运河转弯的道路裁弯取直，才最终修成线性的一级公路，南段称天穆大道京津公路。",
                         images: [
-                          { url: "/shuru/gonglu.jpg", name: "京津公路建设的报道", source: "《The North-China Daily News》，1938 年 3 月 27 日， 第9版" },
+                          { url: withBase("/shuru/gonglu.jpg"), name: "京津公路建设的报道", source: "《The North-China Daily News》，1938 年 3 月 27 日， 第9版" },
                          ]
                         })
                     }}

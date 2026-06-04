@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { SelectedFeature, HistoricalImage } from '../types';
 import { ZoomIn } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { withBase } from '../../../lib/base';
 
 interface FeatureDetailProps {
   feature: SelectedFeature;
@@ -81,7 +82,7 @@ export const FeatureDetail = ({ feature, onBack, onImageZoom }: FeatureDetailPro
                         onClick={() => onImageZoom(img)}
                       >
                         <img 
-                          src={img.url} 
+                          src={withBase(img.url)} 
                           alt={img.name} 
                           referrerPolicy="no-referrer"
                           loading={isFirst ? 'eager' : 'lazy'}
