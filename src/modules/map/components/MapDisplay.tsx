@@ -910,9 +910,13 @@ const getOffsetPath = (coords: [number, number][], offsetFactor: number): [numbe
 const MapDisplayImpl = ({ activePeriod, onFeatureSelect, selectedFeature }: MapDisplayProps) => {
   const hasSelection = !!selectedFeature;
   const smoothedRiverPath = useMemo(() => smoothPath(activePeriod.riverPath), [activePeriod.riverPath]);
-  const unifiedRiverPath = useMemo(
-    () => getOffsetPath(smoothedRiverPath, -0.00015),
+  const leftExpandedRiverPath = useMemo(
+    () => getOffsetPath(smoothedRiverPath, -0.0003),
     [smoothedRiverPath]
+  );
+  const riverVisualPaths = useMemo(
+    () => [leftExpandedRiverPath, smoothedRiverPath],
+    [leftExpandedRiverPath, smoothedRiverPath]
   );
   const adjustedResidentialAreas = useMemo(() => {
     const areas = activePeriod.residentialAreas;
@@ -1038,7 +1042,7 @@ const MapDisplayImpl = ({ activePeriod, onFeatureSelect, selectedFeature }: MapD
               const isRiverSelected = selectedFeature?.type === 'river';
               return (
                 <>
-                  <Polyline 
+                  <Polyline
                     eventHandlers={{
                       click: () => onFeatureSelect({
                         type: 'river',
@@ -1053,25 +1057,37 @@ const MapDisplayImpl = ({ activePeriod, onFeatureSelect, selectedFeature }: MapD
                     className={`river-underlay ${isRiverSelected ? 'feature-highlight' : ''}`}
                     pathOptions={{ 
                       color: MAP_CONFIG.COLORS.RIVER, 
-                      weight: isRiverSelected ? 52 : 46,
+                      weight: isRiverSelected ? 27 : 23,
                       opacity: 1,
                       lineCap: 'round', 
                       lineJoin: 'round',
                       cursor: 'pointer' 
                     }} 
-                    positions={unifiedRiverPath}
+                    positions={riverVisualPaths}
+                  />
+
+                  <Polyline
+                    className="river-wave-overlay river-wave-overlay-extended"
+                    pathOptions={{
+                      color: 'transparent',
+                      weight: isRiverSelected ? 18 : 14,
+                      lineCap: 'round',
+                      lineJoin: 'round',
+                      interactive: false
+                    }}
+                    positions={leftExpandedRiverPath}
                   />
 
                   <Polyline 
                     className="river-wave-overlay"
                     pathOptions={{ 
                       color: 'transparent', 
-                      weight: isRiverSelected ? 46 : 40,
+                      weight: isRiverSelected ? 28 : 24,
                       lineCap: 'round',
                       lineJoin: 'round',
                       interactive: false 
                     }} 
-                    positions={unifiedRiverPath}
+                    positions={smoothedRiverPath}
                   />
                 </>
               );
