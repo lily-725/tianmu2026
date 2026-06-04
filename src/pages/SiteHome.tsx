@@ -8,6 +8,9 @@ import { team } from '../content/site/team';
 import SiteTopNav from '../components/SiteTopNav';
 import { withBase } from '../lib/base';
 
+const homePreview = (path: string) =>
+  path.replace(/^\/(shuru|shouye)\/(?!preview_)([^/?#]+)([?#].*)?$/i, '/$1/preview_$2$3');
+
 export default function SiteHome() {
   const { home } = EXHIBITION_CONFIG;
   const containerRef = useRef<HTMLDivElement>(null);
@@ -25,7 +28,7 @@ export default function SiteHome() {
         <motion.div
           className="map-bg-layer h-full w-full"
           style={{
-            backgroundImage: `url("${withBase('/ditu/qctj.jpg')}")`,
+            backgroundImage: `url("${withBase('/ditu/preview_qctj.jpg')}")`,
             opacity: mapOpacity
           }}
         />
@@ -178,7 +181,7 @@ export default function SiteHome() {
                 viewport={{ once: true }}
                 className="collage-img collage-img--left w-64 h-80 top-5 left-5 z-20"
               >
-                <img src={withBase('/shuru/tianmudajie1.jpg')} alt="天穆大街" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover transition-all duration-700" />
+                <img src={withBase(homePreview('/shuru/tianmudajie1.jpg'))} alt="天穆大街" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover transition-all duration-700" />
                 <div className="absolute bottom-4 left-4 text-[10px] text-white opacity-0 group-hover:opacity-100 transition-opacity tracking-widest uppercase bg-black/40 px-2 py-1">Tianmu Street</div>
               </motion.div>
 
@@ -188,7 +191,7 @@ export default function SiteHome() {
                 viewport={{ once: true }}
                 className="collage-img collage-img--right w-62 h-42 top-12 right-10 z-10"
               >
-                <img src={withBase('/shuru/caoyun1.jpg')} alt="漕运记忆" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover transition-all duration-700" />
+                <img src={withBase(homePreview('/shuru/caoyun1.jpg'))} alt="漕运记忆" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover transition-all duration-700" />
               </motion.div>
 
               <motion.div
@@ -197,7 +200,7 @@ export default function SiteHome() {
                 viewport={{ once: true }}
                 className="collage-img w-60 h-76 top-38 right-16 z-30"
               >
-                <img src={withBase('/shuru/beisi1916.jpg')} alt="清真北寺1916" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover transition-all duration-700" />
+                <img src={withBase(homePreview('/shuru/beisi1916.jpg'))} alt="清真北寺1916" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover transition-all duration-700" />
               </motion.div>
 
               <motion.div
@@ -206,7 +209,7 @@ export default function SiteHome() {
                 viewport={{ once: true }}
                 className="collage-img collage-img--left w-54 h-56 bottom-18 left-17 z-10"
               >
-                <img src={withBase('/shuru/caoyun2.jpg')} alt="运河漕运" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover transition-all duration-700" />
+                <img src={withBase(homePreview('/shuru/caoyun2.jpg'))} alt="运河漕运" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover transition-all duration-700" />
               </motion.div>
 
               <motion.div
@@ -215,7 +218,7 @@ export default function SiteHome() {
                 viewport={{ once: true }}
                 className="collage-img collage-img--right w-46 h-62 bottom-2 right-32 z-20"
               >
-                <img src={withBase('/shuru/tianmuxiaioxue1.jpg')} alt="天穆小学" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover transition-all duration-700" />
+                <img src={withBase(homePreview('/shuru/tianmuxiaioxue1.jpg'))} alt="天穆小学" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover transition-all duration-700" />
               </motion.div>
 
               <motion.div
@@ -224,7 +227,7 @@ export default function SiteHome() {
                 viewport={{ once: true }}
                 className="collage-img collage-img--ghost w-40 h-28 top-[78%] left-[3%] z-0 opacity-28"
               >
-                <img src={withBase('/shouye/06.jpg')} alt="牛羊业" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover transition-all duration-700" />
+                <img src={withBase(homePreview('/shouye/06.jpg'))} alt="牛羊业" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover transition-all duration-700" />
               </motion.div>
             </div>
           </div>
@@ -241,7 +244,7 @@ export default function SiteHome() {
                 viewport={{ once: true }}
                 className="collage-img collage-img--left w-78 h-54 top-4 left-3 z-20"
               >
-                <img src={withBase('/shouye/1.jpg')} alt="清真寺旧影" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover transition-all duration-700" />
+                <img src={withBase(homePreview('/shouye/1.jpg'))} alt="清真寺旧影" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover transition-all duration-700" />
               </motion.div>
 
               <motion.div
@@ -250,7 +253,7 @@ export default function SiteHome() {
                 viewport={{ once: true }}
                 className="collage-img collage-img--right w-78 h-54 bottom-4 right-0 z-10"
               >
-                <img src={withBase('/shouye/5.jpg')} alt="族谱" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover transition-all duration-700" />
+                <img src={withBase(homePreview('/shouye/5.jpg'))} alt="族谱" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover transition-all duration-700" />
               </motion.div>
 
               <motion.div
@@ -259,7 +262,7 @@ export default function SiteHome() {
                 viewport={{ once: true }}
                 className="collage-img w-70 h-50 top-28 right-16 z-30"
               >
-                <img src={withBase('/shouye/11.jpg')} alt="清真食俗" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover transition-all duration-700" />
+                <img src={withBase(homePreview('/shouye/11.jpg'))} alt="清真食俗" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover transition-all duration-700" />
               </motion.div>
 
               <motion.div
@@ -268,7 +271,7 @@ export default function SiteHome() {
                 viewport={{ once: true }}
                 className="collage-img collage-img--left w-40 h-52 bottom-14 left-16 z-20"
               >
-                <img src={withBase('/shouye/4.jpg')} alt="穆家庄1937" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover transition-all duration-700" />
+                <img src={withBase(homePreview('/shouye/4.jpg'))} alt="穆家庄1937" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover transition-all duration-700" />
               </motion.div>
 
               <motion.div
@@ -277,7 +280,7 @@ export default function SiteHome() {
                 viewport={{ once: true }}
                 className="collage-img collage-img--ghost collage-img--right w-42 h-54 top-[50%] left-[32%] z-0 opacity-24"
               >
-                <img src={withBase('/shouye/2.jpg')} alt="牛羊业发展" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover transition-all duration-700" />
+                <img src={withBase(homePreview('/shouye/2.jpg'))} alt="牛羊业发展" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover transition-all duration-700" />
               </motion.div>
             </div>
 
