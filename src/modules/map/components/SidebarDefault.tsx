@@ -16,7 +16,10 @@ const WAVEFORM_BARS = [
 ];
 
 const getPreviewUrl = (url: string) =>
-  url.replace(/\/ditu\/(?!thumb_)([^/?#]+)([?#].*)?$/i, '/ditu/thumb_$1$2');
+  url.replace(/\/ditu\/(?!preview_|thumb_)([^/?#]+)([?#].*)?$/i, '/ditu/preview_$1$2');
+
+const getPreviewFallbackUrl = (url: string) =>
+  url.replace(/\/ditu\/(?!thumb_)(?:preview_)?([^/?#]+)([?#].*)?$/i, '/ditu/thumb_$1$2');
 
 export const SidebarDefault = ({ activePeriod, onImageZoom }: SidebarDefaultProps) => {
   const [isOralPlaying, setIsOralPlaying] = useState(false);
@@ -73,6 +76,10 @@ export const SidebarDefault = ({ activePeriod, onImageZoom }: SidebarDefaultProp
   };
 
   const galleryImages = activePeriod.historicalImages || (activePeriod.coverImage ? [activePeriod.coverImage] : []);
+  const safeGalleryIndex = galleryImages.length
+    ? Math.min(activeGalleryIndex, galleryImages.length - 1)
+    : 0;
+  const activeGalleryImage = galleryImages[safeGalleryIndex];
 
   const handlePrevImage = () => {
     setActiveGalleryIndex((prev) => (prev === 0 ? galleryImages.length - 1 : prev - 1));
@@ -85,6 +92,24 @@ export const SidebarDefault = ({ activePeriod, onImageZoom }: SidebarDefaultProp
   useEffect(() => {
     setActiveGalleryIndex(0);
   }, [activePeriod.id]);
+
+  useEffect(() => {
+    if (!galleryImages.length) return;
+
+    const indexes = new Set([
+      safeGalleryIndex,
+      safeGalleryIndex === 0 ? galleryImages.length - 1 : safeGalleryIndex - 1,
+      safeGalleryIndex === galleryImages.length - 1 ? 0 : safeGalleryIndex + 1,
+    ]);
+
+    indexes.forEach((index) => {
+      const image = galleryImages[index];
+      if (!image) return;
+      const preload = new Image();
+      preload.decoding = 'async';
+      preload.src = getPreviewUrl(image.url);
+    });
+  }, [activePeriod.id, galleryImages, safeGalleryIndex]);
 
   return (
     <div
@@ -101,34 +126,34 @@ export const SidebarDefault = ({ activePeriod, onImageZoom }: SidebarDefaultProp
           </h3>
           <div className="relative group" key={activePeriod.id}>
             <div className="relative">
-              {galleryImages.map((img, i) => (
-                (() => {
-                  const isActive = i === activeGalleryIndex;
-
-                  return (
+              {activeGalleryImage && (
                 <motion.div
-                  key={i}
+                  key={`${activePeriod.id}-${safeGalleryIndex}`}
                   initial={{ opacity: 0 }}
-                  animate={{ opacity: isActive ? 1 : 0 }}
+                  animate={{ opacity: 1 }}
                   transition={{ duration: 0.3 }}
-                  className={`relative w-full cursor-zoom-in overflow-hidden rounded-sm aspect-[16/10] ${isActive ? 'block' : 'hidden'}`}
-                  onClick={() => onImageZoom(img)}
+                  className="relative w-full cursor-zoom-in overflow-hidden rounded-sm aspect-[16/10]"
+                  onClick={() => onImageZoom(activeGalleryImage)}
                 >
                   <img
-                    src={getPreviewUrl(img.url)}
-                    alt={img.name}
-                    loading={isActive ? 'eager' : 'lazy'}
+                    src={getPreviewUrl(activeGalleryImage.url)}
+                    alt={activeGalleryImage.name}
+                    loading="eager"
                     decoding="async"
-                    fetchPriority={isActive ? 'high' : 'low'}
+                    fetchPriority="high"
+                    onError={(event) => {
+                      const img = event.currentTarget;
+                      if (img.dataset.fallbackApplied === 'true') return;
+                      img.dataset.fallbackApplied = 'true';
+                      img.src = getPreviewFallbackUrl(activeGalleryImage.url);
+                    }}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
-                    <div className="text-white text-[10px] font-bold tracking-widest uppercase">{img.name}</div>
+                    <div className="text-white text-[10px] font-bold tracking-widest uppercase">{activeGalleryImage.name}</div>
                   </div>
                 </motion.div>
-                  );
-                })()
-              ))}
+              )}
 
               {galleryImages.length > 1 && (
                 <>
