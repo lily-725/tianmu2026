@@ -1,201 +1,206 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>图片加载测试 - Vercel</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background: #f5f5f5;
-        }
-        h1 {
-            color: #333;
-            border-bottom: 2px solid #0070f3;
-            padding-bottom: 10px;
-        }
-        .test-section {
-            background: white;
-            border-radius: 8px;
-            padding: 20px;
-            margin: 20px 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .image-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        .image-item {
-            text-align: center;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 10px;
-            background: #fafafa;
-        }
-        .image-item img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 4px;
-        }
-        .status {
-            margin-top: 10px;
-            font-size: 12px;
-            padding: 4px 8px;
-            border-radius: 4px;
-        }
-        .success {
-            background: #d4edda;
-            color: #155724;
-        }
-        .error {
-            background: #f8d7da;
-            color: #721c24;
-        }
-        .path-info {
-            font-family: monospace;
-            font-size: 11px;
-            margin-top: 5px;
-            word-break: break-all;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background: #f5f5f5;
+      }
+      h1 {
+        color: #333;
+        border-bottom: 2px solid #0070f3;
+        padding-bottom: 10px;
+      }
+      .test-section {
+        background: white;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .image-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+      }
+      .image-item {
+        text-align: center;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 10px;
+        background: #fafafa;
+      }
+      .image-item img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 4px;
+      }
+      .status {
+        margin-top: 10px;
+        font-size: 12px;
+        padding: 4px 8px;
+        border-radius: 4px;
+      }
+      .success {
+        background: #d4edda;
+        color: #155724;
+      }
+      .error {
+        background: #f8d7da;
+        color: #721c24;
+      }
+      .path-info {
+        font-family: monospace;
+        font-size: 11px;
+        margin-top: 5px;
+        word-break: break-all;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Vercel图片加载测试</h1>
-    
+
     <div class="test-section">
-        <h2>直接图片URL测试</h2>
-        <div class="image-grid" id="direct-tests">
-            <!-- 通过JavaScript动态添加 -->
-        </div>
+      <h2>直接图片URL测试</h2>
+      <div class="image-grid" id="direct-tests">
+        <!-- 通过JavaScript动态添加 -->
+      </div>
     </div>
-    
+
     <div class="test-section">
-        <h2>withBase函数测试</h2>
-        <div class="image-grid" id="withbase-tests">
-            <!-- 通过JavaScript动态添加 -->
-        </div>
+      <h2>withBase函数测试</h2>
+      <div class="image-grid" id="withbase-tests">
+        <!-- 通过JavaScript动态添加 -->
+      </div>
     </div>
-    
+
     <div class="test-section">
-        <h2>环境信息</h2>
-        <pre id="env-info">正在加载...</pre>
+      <h2>环境信息</h2>
+      <pre id="env-info">正在加载...</pre>
     </div>
 
     <script>
-        // 测试的图片路径
-        const testPaths = [
-            '/import/picture0.jpg',
-            '/import/picture1.jpg',
-            '/ditu/1846tj.jpg',
-            '/ditu/thumb_1846tj.jpg',
-            '/shuru/caoyun1.jpg',
-            '/shuru/thumb_caoyun1.jpg',
-            '/shouye/1.jpg',
-            '/yinpin/1402-1912 天穆村的起源.mp3'
-        ];
+      // 测试的图片路径
+      const testPaths = [
+        "/import/picture0.jpg",
+        "/import/picture1.jpg",
+        "/ditu/1846tj.jpg",
+        "/ditu/thumb_1846tj.jpg",
+        "/shuru/caoyun1.jpg",
+        "/shuru/thumb_caoyun1.jpg",
+        "/shouye/1.jpg",
+        "/yinpin/1404-1912 天穆村的起源.mp3",
+      ];
 
-        // 模拟 withBase 函数（简化版）
-        function withBase(path) {
-            if (!path) return path;
-            if (/^(https?:)?\/\//.test(path) || path.startsWith('data:')) return path;
-            if (!path.startsWith('/')) {
-                path = '/' + path;
-            }
-            return path;
+      // 模拟 withBase 函数（简化版）
+      function withBase(path) {
+        if (!path) return path;
+        if (/^(https?:)?\/\//.test(path) || path.startsWith("data:"))
+          return path;
+        if (!path.startsWith("/")) {
+          path = "/" + path;
         }
+        return path;
+      }
 
-        // 测试直接访问
-        const directTests = document.getElementById('direct-tests');
-        const withbaseTests = document.getElementById('withbase-tests');
-        const envInfo = document.getElementById('env-info');
+      // 测试直接访问
+      const directTests = document.getElementById("direct-tests");
+      const withbaseTests = document.getElementById("withbase-tests");
+      const envInfo = document.getElementById("env-info");
 
-        // 显示环境信息
-        envInfo.textContent = JSON.stringify({
-            location: window.location,
-            origin: window.location.origin,
-            pathname: window.location.pathname,
-            hostname: window.location.hname,
-            userAgent: navigator.userAgent
-        }, null, 2);
+      // 显示环境信息
+      envInfo.textContent = JSON.stringify(
+        {
+          location: window.location,
+          origin: window.location.origin,
+          pathname: window.location.pathname,
+          hostname: window.location.hname,
+          userAgent: navigator.userAgent,
+        },
+        null,
+        2,
+      );
 
-        // 测试直接访问
-        testPaths.forEach(path => {
-            const img = new Image();
-            const container = document.createElement('div');
-            container.className = 'image-item';
-            
-            const imgElement = document.createElement('img');
-            imgElement.src = path;
-            imgElement.alt = path;
-            
-            const status = document.createElement('div');
-            status.className = 'status';
-            
-            const pathInfo = document.createElement('div');
-            pathInfo.className = 'path-info';
-            pathInfo.textContent = `URL: ${path}`;
-            
-            img.onload = function() {
-                status.textContent = '✅ 加载成功';
-                status.className = 'status success';
-            };
-            
-            img.onerror = function() {
-                status.textContent = '❌ 加载失败';
-                status.className = 'status error';
-            };
-            
-            container.appendChild(imgElement);
-            container.appendChild(status);
-            container.appendChild(pathInfo);
-            directTests.appendChild(container);
-            
-            // 开始加载
-            img.src = path;
-        });
+      // 测试直接访问
+      testPaths.forEach((path) => {
+        const img = new Image();
+        const container = document.createElement("div");
+        container.className = "image-item";
 
-        // 测试 withBase 处理
-        testPaths.forEach(path => {
-            const processedPath = withBase(path);
-            const img = new Image();
-            const container = document.createElement('div');
-            container.className = 'image-item';
-            
-            const imgElement = document.createElement('img');
-            imgElement.src = processedPath;
-            imgElement.alt = path;
-            
-            const status = document.createElement('div');
-            status.className = 'status';
-            
-            const pathInfo = document.createElement('div');
-            pathInfo.className = 'path-info';
-            pathInfo.textContent = `原始: ${path}\n处理后: ${processedPath}`;
-            
-            img.onload = function() {
-                status.textContent = '✅ 加载成功';
-                status.className = 'status success';
-            };
-            
-            img.onerror = function() {
-                status.textContent = '❌ 加载失败';
-                status.className = 'status error';
-            };
-            
-            container.appendChild(imgElement);
-            container.appendChild(status);
-            container.appendChild(pathInfo);
-            withbaseTests.appendChild(container);
-            
-            // 开始加载
-            img.src = processedPath;
-        });
+        const imgElement = document.createElement("img");
+        imgElement.src = path;
+        imgElement.alt = path;
+
+        const status = document.createElement("div");
+        status.className = "status";
+
+        const pathInfo = document.createElement("div");
+        pathInfo.className = "path-info";
+        pathInfo.textContent = `URL: ${path}`;
+
+        img.onload = function () {
+          status.textContent = "✅ 加载成功";
+          status.className = "status success";
+        };
+
+        img.onerror = function () {
+          status.textContent = "❌ 加载失败";
+          status.className = "status error";
+        };
+
+        container.appendChild(imgElement);
+        container.appendChild(status);
+        container.appendChild(pathInfo);
+        directTests.appendChild(container);
+
+        // 开始加载
+        img.src = path;
+      });
+
+      // 测试 withBase 处理
+      testPaths.forEach((path) => {
+        const processedPath = withBase(path);
+        const img = new Image();
+        const container = document.createElement("div");
+        container.className = "image-item";
+
+        const imgElement = document.createElement("img");
+        imgElement.src = processedPath;
+        imgElement.alt = path;
+
+        const status = document.createElement("div");
+        status.className = "status";
+
+        const pathInfo = document.createElement("div");
+        pathInfo.className = "path-info";
+        pathInfo.textContent = `原始: ${path}\n处理后: ${processedPath}`;
+
+        img.onload = function () {
+          status.textContent = "✅ 加载成功";
+          status.className = "status success";
+        };
+
+        img.onerror = function () {
+          status.textContent = "❌ 加载失败";
+          status.className = "status error";
+        };
+
+        container.appendChild(imgElement);
+        container.appendChild(status);
+        container.appendChild(pathInfo);
+        withbaseTests.appendChild(container);
+
+        // 开始加载
+        img.src = processedPath;
+      });
     </script>
-</body>
+  </body>
 </html>

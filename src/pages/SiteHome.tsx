@@ -1,35 +1,41 @@
-import { motion, useScroll, useTransform } from 'motion/react';
-import { useRef } from 'react';
-import { Link } from 'react-router-dom';
-import { Mail, ArrowRight } from 'lucide-react';
-import { EXHIBITION_CONFIG } from '../modules/home/config';
-import { about } from '../content/site/about';
-import { team } from '../content/site/team';
-import SiteTopNav from '../components/SiteTopNav';
-import { withBase } from '../lib/base';
+import { motion, useScroll, useTransform } from "motion/react";
+import { useRef } from "react";
+import { Link } from "react-router-dom";
+import { Mail, ArrowRight } from "lucide-react";
+import { EXHIBITION_CONFIG } from "../modules/home/config";
+import { about } from "../content/site/about";
+import { team } from "../content/site/team";
+import SiteTopNav from "../components/SiteTopNav";
+import { withBase } from "../lib/base";
 
 const homePreview = (path: string) =>
-  path.replace(/^\/(shuru|shouye)\/(?!preview_)([^/?#]+)([?#].*)?$/i, '/$1/preview_$2$3');
+  path.replace(
+    /^\/(shuru|shouye)\/(?!preview_)([^/?#]+)([?#].*)?$/i,
+    "/$1/preview_$2$3",
+  );
 
 export default function SiteHome() {
   const { home } = EXHIBITION_CONFIG;
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start start', 'end end'],
+    offset: ["start start", "end end"],
   });
 
   const mapOpacity = useTransform(scrollYProgress, [0, 0.2], [0.12, 0.05]);
   const heroScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.95]);
 
   return (
-    <div ref={containerRef} className="home-module-theme relative w-full bg-parchment overflow-x-hidden">
+    <div
+      ref={containerRef}
+      className="home-module-theme relative w-full bg-parchment overflow-x-hidden"
+    >
       <div className="fixed inset-0 pointer-events-none z-0">
         <motion.div
           className="map-bg-layer h-full w-full"
           style={{
-            backgroundImage: `url("${withBase('/ditu/preview_qctj.jpg')}")`,
-            opacity: mapOpacity
+            backgroundImage: `url("${withBase("/ditu/preview_qctj.jpg")}")`,
+            opacity: mapOpacity,
           }}
         />
         <div className="ink-bleed top-[-10%] left-[-10%]" />
@@ -41,7 +47,7 @@ export default function SiteHome() {
       <section className="snap-section relative min-h-[100svh] w-full flex flex-col overflow-hidden">
         <SiteTopNav variant="home" behavior="overlay" />
 
-        <div className="watermark-shadow">1402-</div>
+        <div className="watermark-shadow">1404-</div>
 
         <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
           <div className="absolute top-0 right-0 w-[40vw] h-full bg-gradient-to-l from-oldgold/10 to-transparent" />
@@ -116,22 +122,40 @@ export default function SiteHome() {
                 <Link to="/exhibition" className="portal-entry group">
                   <div className="portal-content flex justify-between items-end">
                     <div className="space-y-3">
-                      <p className="text-[10px] tracking-[0.4em] opacity-40 font-sans uppercase">Virtual Exhibition</p>
-                      <h3 className="text-3xl font-serif text-ink group-hover:text-cinnabar transition-colors">进入数字展厅</h3>
-                      <p className="text-xs opacity-50 font-serif italic">图文展览，走进泊岸生根的故事</p>
+                      <p className="text-[10px] tracking-[0.4em] opacity-40 font-sans uppercase">
+                        Virtual Exhibition
+                      </p>
+                      <h3 className="text-3xl font-serif text-ink group-hover:text-cinnabar transition-colors">
+                        进入数字展厅
+                      </h3>
+                      <p className="text-xs opacity-50 font-serif italic">
+                        图文展览，走进泊岸生根的故事
+                      </p>
                     </div>
-                    <ArrowRight className="portal-arrow transition-transform duration-500 opacity-40 group-hover:opacity-100" size={24} />
+                    <ArrowRight
+                      className="portal-arrow transition-transform duration-500 opacity-40 group-hover:opacity-100"
+                      size={24}
+                    />
                   </div>
                 </Link>
 
                 <Link to="/map" className="portal-entry group">
                   <div className="portal-content flex justify-between items-end">
                     <div className="space-y-3">
-                      <p className="text-[10px] tracking-[0.4em] opacity-40 font-sans uppercase">Cartographic Archive</p>
-                      <h3 className="text-3xl font-serif text-ink group-hover:text-cinnabar transition-colors">探索时空地图</h3>
-                      <p className="text-xs opacity-50 font-serif italic">互动探索，穿梭六百年时空长廊</p>
+                      <p className="text-[10px] tracking-[0.4em] opacity-40 font-sans uppercase">
+                        Cartographic Archive
+                      </p>
+                      <h3 className="text-3xl font-serif text-ink group-hover:text-cinnabar transition-colors">
+                        探索时空地图
+                      </h3>
+                      <p className="text-xs opacity-50 font-serif italic">
+                        互动探索，穿梭六百年时空长廊
+                      </p>
                     </div>
-                    <ArrowRight className="portal-arrow transition-transform duration-500 opacity-40 group-hover:opacity-100" size={24} />
+                    <ArrowRight
+                      className="portal-arrow transition-transform duration-500 opacity-40 group-hover:opacity-100"
+                      size={24}
+                    />
                   </div>
                 </Link>
               </div>
@@ -144,11 +168,14 @@ export default function SiteHome() {
           transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
           className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-30 group cursor-pointer"
           onClick={() => {
-            const sections = containerRef.current?.querySelectorAll('.snap-section');
-            sections?.[1]?.scrollIntoView({ behavior: 'smooth' });
+            const sections =
+              containerRef.current?.querySelectorAll(".snap-section");
+            sections?.[1]?.scrollIntoView({ behavior: "smooth" });
           }}
         >
-          <span className="text-[10px] tracking-[0.8em] font-sans uppercase ml-[0.8em]">Scroll</span>
+          <span className="text-[10px] tracking-[0.8em] font-sans uppercase ml-[0.8em]">
+            Scroll
+          </span>
           <div className="w-px h-16 bg-gradient-to-b from-ink to-transparent" />
         </motion.div>
       </section>
@@ -164,10 +191,15 @@ export default function SiteHome() {
             >
               <div className="absolute -top-6 -right-6 w-24 h-24 border-r-2 border-t-2 border-cinnabar/20 pointer-events-none" />
               <div className="about-decorative-text">天穆</div>
-              <h2 className="text-5xl md:text-6xl font-serif text-ink mb-12">关于天穆</h2>
+              <h2 className="text-5xl md:text-6xl font-serif text-ink mb-12">
+                关于天穆
+              </h2>
               <div className="space-y-6">
                 {about.paragraphs.map((p, i) => (
-                  <p key={i} className="text-lg md:text-xl leading-relaxed text-justify opacity-80 font-serif font-light">
+                  <p
+                    key={i}
+                    className="text-lg md:text-xl leading-relaxed text-justify opacity-80 font-serif font-light"
+                  >
                     {p}
                   </p>
                 ))}
@@ -181,8 +213,17 @@ export default function SiteHome() {
                 viewport={{ once: true }}
                 className="collage-img collage-img--left w-64 h-80 top-5 left-5 z-20"
               >
-                <img src={withBase(homePreview('/shuru/tianmudajie1.jpg'))} alt="天穆大街" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover transition-all duration-700" />
-                <div className="absolute bottom-4 left-4 text-[10px] text-white opacity-0 group-hover:opacity-100 transition-opacity tracking-widest uppercase bg-black/40 px-2 py-1">Tianmu Street</div>
+                <img
+                  src={withBase(homePreview("/shuru/tianmudajie1.jpg"))}
+                  alt="天穆大街"
+                  loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
+                  className="w-full h-full object-cover transition-all duration-700"
+                />
+                <div className="absolute bottom-4 left-4 text-[10px] text-white opacity-0 group-hover:opacity-100 transition-opacity tracking-widest uppercase bg-black/40 px-2 py-1">
+                  Tianmu Street
+                </div>
               </motion.div>
 
               <motion.div
@@ -191,7 +232,14 @@ export default function SiteHome() {
                 viewport={{ once: true }}
                 className="collage-img collage-img--right w-62 h-42 top-12 right-10 z-10"
               >
-                <img src={withBase(homePreview('/shuru/caoyun1.jpg'))} alt="漕运记忆" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover transition-all duration-700" />
+                <img
+                  src={withBase(homePreview("/shuru/caoyun1.jpg"))}
+                  alt="漕运记忆"
+                  loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
+                  className="w-full h-full object-cover transition-all duration-700"
+                />
               </motion.div>
 
               <motion.div
@@ -200,7 +248,14 @@ export default function SiteHome() {
                 viewport={{ once: true }}
                 className="collage-img w-60 h-76 top-38 right-16 z-30"
               >
-                <img src={withBase(homePreview('/shuru/beisi1916.jpg'))} alt="清真北寺1916" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover transition-all duration-700" />
+                <img
+                  src={withBase(homePreview("/shuru/beisi1916.jpg"))}
+                  alt="清真北寺1916"
+                  loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
+                  className="w-full h-full object-cover transition-all duration-700"
+                />
               </motion.div>
 
               <motion.div
@@ -209,7 +264,14 @@ export default function SiteHome() {
                 viewport={{ once: true }}
                 className="collage-img collage-img--left w-54 h-56 bottom-18 left-17 z-10"
               >
-                <img src={withBase(homePreview('/shuru/caoyun2.jpg'))} alt="运河漕运" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover transition-all duration-700" />
+                <img
+                  src={withBase(homePreview("/shuru/caoyun2.jpg"))}
+                  alt="运河漕运"
+                  loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
+                  className="w-full h-full object-cover transition-all duration-700"
+                />
               </motion.div>
 
               <motion.div
@@ -218,7 +280,14 @@ export default function SiteHome() {
                 viewport={{ once: true }}
                 className="collage-img collage-img--right w-46 h-62 bottom-2 right-32 z-20"
               >
-                <img src={withBase(homePreview('/shuru/tianmuxiaioxue1.jpg'))} alt="天穆小学" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover transition-all duration-700" />
+                <img
+                  src={withBase(homePreview("/shuru/tianmuxiaioxue1.jpg"))}
+                  alt="天穆小学"
+                  loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
+                  className="w-full h-full object-cover transition-all duration-700"
+                />
               </motion.div>
 
               <motion.div
@@ -227,7 +296,14 @@ export default function SiteHome() {
                 viewport={{ once: true }}
                 className="collage-img collage-img--ghost w-40 h-28 top-[78%] left-[3%] z-0 opacity-28"
               >
-                <img src={withBase(homePreview('/shouye/06.jpg'))} alt="牛羊业" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover transition-all duration-700" />
+                <img
+                  src={withBase(homePreview("/shouye/06.jpg"))}
+                  alt="牛羊业"
+                  loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
+                  className="w-full h-full object-cover transition-all duration-700"
+                />
               </motion.div>
             </div>
           </div>
@@ -244,7 +320,14 @@ export default function SiteHome() {
                 viewport={{ once: true }}
                 className="collage-img collage-img--left w-78 h-54 top-4 left-3 z-20"
               >
-                <img src={withBase(homePreview('/shouye/1.jpg'))} alt="清真寺旧影" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover transition-all duration-700" />
+                <img
+                  src={withBase(homePreview("/shouye/1.jpg"))}
+                  alt="清真寺旧影"
+                  loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
+                  className="w-full h-full object-cover transition-all duration-700"
+                />
               </motion.div>
 
               <motion.div
@@ -253,7 +336,14 @@ export default function SiteHome() {
                 viewport={{ once: true }}
                 className="collage-img collage-img--right w-78 h-54 bottom-4 right-0 z-10"
               >
-                <img src={withBase(homePreview('/shouye/5.jpg'))} alt="族谱" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover transition-all duration-700" />
+                <img
+                  src={withBase(homePreview("/shouye/5.jpg"))}
+                  alt="族谱"
+                  loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
+                  className="w-full h-full object-cover transition-all duration-700"
+                />
               </motion.div>
 
               <motion.div
@@ -262,7 +352,14 @@ export default function SiteHome() {
                 viewport={{ once: true }}
                 className="collage-img w-70 h-50 top-28 right-16 z-30"
               >
-                <img src={withBase(homePreview('/shouye/11.jpg'))} alt="清真食俗" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover transition-all duration-700" />
+                <img
+                  src={withBase(homePreview("/shouye/11.jpg"))}
+                  alt="清真食俗"
+                  loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
+                  className="w-full h-full object-cover transition-all duration-700"
+                />
               </motion.div>
 
               <motion.div
@@ -271,7 +368,14 @@ export default function SiteHome() {
                 viewport={{ once: true }}
                 className="collage-img collage-img--left w-40 h-52 bottom-14 left-16 z-20"
               >
-                <img src={withBase(homePreview('/shouye/4.jpg'))} alt="穆家庄1937" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover transition-all duration-700" />
+                <img
+                  src={withBase(homePreview("/shouye/4.jpg"))}
+                  alt="穆家庄1937"
+                  loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
+                  className="w-full h-full object-cover transition-all duration-700"
+                />
               </motion.div>
 
               <motion.div
@@ -280,7 +384,14 @@ export default function SiteHome() {
                 viewport={{ once: true }}
                 className="collage-img collage-img--ghost collage-img--right w-42 h-54 top-[50%] left-[32%] z-0 opacity-24"
               >
-                <img src={withBase(homePreview('/shouye/2.jpg'))} alt="牛羊业发展" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover transition-all duration-700" />
+                <img
+                  src={withBase(homePreview("/shouye/2.jpg"))}
+                  alt="牛羊业发展"
+                  loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
+                  className="w-full h-full object-cover transition-all duration-700"
+                />
               </motion.div>
             </div>
 
@@ -292,7 +403,9 @@ export default function SiteHome() {
             >
               <div className="absolute -bottom-6 -left-6 w-24 h-24 border-l-2 border-b-2 border-oldgold/20 pointer-events-none" />
               <div className="team-decorative-text text-oldgold/5">鸣谢</div>
-              <h2 className="text-5xl md:text-7xl font-serif text-ink mb-12 tracking-tight">特别鸣谢</h2>
+              <h2 className="text-5xl md:text-7xl font-serif text-ink mb-12 tracking-tight">
+                特别鸣谢
+              </h2>
 
               <div className="space-y-6 mb-16">
                 <p className="text-lg md:text-xl leading-relaxed text-justify opacity-80 font-serif font-light">
@@ -302,14 +415,18 @@ export default function SiteHome() {
 
               <div className="pt-6 border-t border-ink/10 space-y-6">
                 <div className="flex items-center gap-4">
-                  <p className="text-xs tracking-[0.4em] font-sans uppercase text-oldgold/80 font-bold">Editorial Team</p>
+                  <p className="text-xs tracking-[0.4em] font-sans uppercase text-oldgold/80 font-bold">
+                    Editorial Team
+                  </p>
                   <div className="h-px flex-1 bg-oldgold/10" />
                 </div>
 
                 <div className="space-y-6">
                   <div className="flex flex-wrap gap-x-8 gap-y-4 items-baseline">
-                    <span className="text-sm tracking-[0.2em] font-sans text-ink/40 uppercase">策展人员</span>
-                    {team.curators[0].names.split('，').map((name, index) => (
+                    <span className="text-sm tracking-[0.2em] font-sans text-ink/40 uppercase">
+                      策展人员
+                    </span>
+                    {team.curators[0].names.split("，").map((name, index) => (
                       <motion.span
                         key={name}
                         initial={{ opacity: 0 }}
@@ -329,7 +446,10 @@ export default function SiteHome() {
               </div>
 
               <div className="pt-12 border-t border-ink/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-                <a href={`mailto:${team.contact}`} className="contact-badge hover:bg-ink hover:text-parchment transition-all duration-500">
+                <a
+                  href={`mailto:${team.contact}`}
+                  className="contact-badge hover:bg-ink hover:text-parchment transition-all duration-500"
+                >
                   <Mail size={14} />
                   <span>{team.contact}</span>
                 </a>
@@ -338,7 +458,6 @@ export default function SiteHome() {
           </div>
         </div>
       </section>
-
     </div>
   );
 }
